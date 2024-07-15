@@ -1,0 +1,101 @@
+###get service document
+http://localhost:4004
+
+###get metadata
+http://localhost:4004/odata/v4/catalogService/$metadata
+
+###get employee set
+http://localhost:4004/odata/v4/catalogService/EmployeeSet
+
+###get single employee by id
+http://localhost:4004/odata/v4/catalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197A7FB
+
+###count number of employees
+http://localhost:4004/odata/v4/catalogService/EmployeeSet/$count
+
+
+###pagination
+http://localhost:4004/odata/v4/catalogService/EmployeeSet?$top=5&skip=3
+
+###filter the employee set
+http://localhost:4004/odata/v4/catalogService/EmployeeSet/$filter=
+
+
+###filter 1
+http://localhost:4004/odata/v4/catalogService/EmployeeSet?$filter=bankName eq 'My Bank of San Francisco'
+
+###filter 2
+http://localhost:4004/odata/v4/catalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+###filter 3
+http://localhost:4004/odata/v4/catalogService/EmployeeSet?$select=nameFirst,sex,language
+
+###
+http://localhost:4004/odata/v4/catalogService/ProductSet/74867AD200E41EDBA5D8B06B26EB6052?$expand=To_Items
+
+
+###post is correct but i also made empset read only later
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+    "nameFirst": "Christiano",
+    "nameMiddle": "M",
+    "nameLast": "Ronaldo",
+    "nameInitials": null,
+    "sex": "M",
+    "language": "E",
+    "phoneNumber": "+918810504555",
+    "email": "chris.ronaldo@gmail.com",
+    "loginName": "CHRISRL",
+    "Currency_code": "USD",
+    "salaryAmount": 76395,
+    "accountNumber": "32109876",
+    "bankId": "66665555",
+    "bankName": "My Bank of London"
+}
+
+###get ronalodo
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/e2ac7add-719d-4579-9248-82160c292b01
+
+###PATCH
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/3c98e53d-d939-4e5e-90d0-2571109cbb27
+Content-Type: application/json
+
+{
+    "salaryAmount": 1000000,
+    "Currency_code": "EUR"
+}
+
+###delete ronaldo
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/e2ac7add-719d-4579-9248-82160c292b01
+
+
+###get all PO
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get single PO
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+###Get PO with its items
+
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052?$expand=Items
+
+
+###
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/catalogService.boost
+Content-Type: application/json
+
+{}
+
+###Function
+GET http://localhost:4004/odata/v4/CatalogService/largestOrder()
+
+###get metadata - v2
+http://localhost:4004/v2/odata/v4/catalogService/$metadata
+
+###get employee set - v2
+http://localhost:4004/v2/odata/v4/catalogService/EmployeeSet?$format=json
+
+###get single employee by id - v2
+http://localhost:4004/v2/odata/v4/catalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197A7FB?$format=json
