@@ -9,6 +9,7 @@ annotate service.POs with @(
         GROSS_AMOUNT,
         OVERALL_STATUS
     ],
+//    @just for fun
     UI.LineItem:[
         {
             $Type : 'UI.DataField',
